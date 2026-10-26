@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>榫卯 · 中国木构智慧 3D 博物馆</title>
+  <meta name="description" content="一座可以动手拆装的 3D 榫卯博物馆：直角榫、燕尾榫、格肩榫、楔钉榫。" />
+  <meta name="theme-color" content="#efe7d9" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a8402f'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23f6efe3' font-family='serif'%3E榫%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="app" class="is-loading">
+    <canvas id="scene" aria-label="3D 榫卯展厅"></canvas>
+    <div class="bg-glow"></div>
+    <div class="grain"></div>
+    <div class="vignette"></div>
+
+    <header class="brand" id="brand">
+      <div class="seal">榫</div>
+      <div class="brand-text">
+        <div class="brand-title">榫卯</div>
+        <div class="brand-sub">中国木构智慧 · 3D 博物馆</div>
+      </div>
+    </header>
+
+    <nav class="rail" id="rail" aria-label="关卡导航"></nav>
+
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+
+    <div class="toolbar" id="toolbar"></div>
+
+    <div class="hintbar" id="hintbar">
+      <span class="hint-dot"></span>
+      <span id="hintText">拖拽木料，推入装配</span>
+    </div>
+
+    <div class="rotate-widget" id="rotateWidget" hidden>
+      <button class="rot-btn" data-rot="-1" title="逆时针旋转 (Q)">⟲<span>Q</span></button>
+      <div class="angle">
+        <b id="angleVal">45°</b>
+        <small>待对齐</small>
+      </div>
+      <button class="rot-btn" data-rot="1" title="顺时针旋转 (E)">⟳<span>E</span></button>
+    </div>
+
+    <div class="camera-widget" id="cameraWidget">
+      <span class="cw-label">视角</span>
+      <button data-cam="front">正</button>
+      <button data-cam="side">侧</button>
+      <button data-cam="top">俯</button>
+      <button data-cam="home" class="cw-home">复位</button>
+    </div>
+
+    <div class="piece-label" id="pieceLabel"></div>
+    <div class="toast" id="toast"></div>
+
+    <div class="landing" id="landing">
+      <div class="landing-shade"></div>
+      <div class="landing-inner">
+        <div class="landing-left">
+          <div class="vert-title" aria-hidden="true"><span>榫</span><span>卯</span></div>
+          <div class="landing-meta">
+            <div class="kicker">A 3D MUSEUM OF CHINESE JOINERY</div>
+            <h1>中国木构的智慧</h1>
+            <p class="lede">不用一钉，以形锁力。<br />四种榫卯，四把打开中国木作世界的钥匙。</p>
+            <div class="landing-actions">
+              <button class="btn primary" id="btnStart">开始研习</button>
+              <button class="btn ghost" id="btnGallery">自由观展</button>
+            </div>
+            <div class="landing-controls" id="landingControls"></div>
+          </div>
+        </div>
+        <div class="landing-cards" id="landingCards"></div>
+      </div>
+      <div class="landing-foot">
+        <span>拖拽 · 旋转 · 推入 · 聆听木头合上的声音</span>
+        <span class="foot-seal">匠</span>
+      </div>
+    </div>
+
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card" id="modalCard"></div>
+    </div>
+
+    <div class="loader" id="loader">
+      <div class="loader-seal">榫</div>
+      <div class="loader-title">榫卯</div>
+      <div class="loader-line"><i id="loaderBar"></i></div>
+      <div class="loader-text" id="loaderText">正在打磨木料…</div>
+    </div>
+
+    <div class="fallback" id="fallback" hidden>
+      <h2>这里需要 WebGL</h2>
+      <p>请使用最新版 Chrome / Edge / Firefox / Safari 打开本页，并确认浏览器已启用硬件加速。</p>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

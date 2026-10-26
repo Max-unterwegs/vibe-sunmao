@@ -1,0 +1,12 @@
+{
+  "name": "sunmao-museum",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "榫卯 · 中国木构智慧 3D 互动博物馆",
+  "keywords": ["three.js", "榫卯", "webgl", "museum", "chinese-joinery"],
+  "scripts": {
+    "start": "node tools/server.mjs",
+    "test": "node tools/check-geometry.mjs"
+  }
+}
